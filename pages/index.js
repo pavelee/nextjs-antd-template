@@ -1,8 +1,20 @@
+import { useState, useEffect } from "react";
+import { Row, Col } from "antd";
 
-const Index = () => (
-  <>
-    <h1>WELCOME MY FRIEND!</h1>
-  </>
-);
+const Dashboard = (props) => {
+  const { setCurrentMenuItem } = props;
 
-export default Index;
+  useEffect(() => {
+    setCurrentMenuItem("dashboard");
+  }, []);
+
+  return (
+    <>
+      <Row>
+        <Col>Hello world</Col>
+      </Row>
+    </>
+  );
+};
+
+export default Dashboard;

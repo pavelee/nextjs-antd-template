@@ -1,13 +1,13 @@
-version: '3.8'
+version: '3.4'
 
-services: 
-    pwa:
-        build:
-            context: './'
-            target: 'pwa_dev'
-        volumes: 
-            - './:/usr/src/pwa:rw,cached'
-        ports:
-            - target: 3000
-              published: ${PORT}
-              protocol: tcp
+services:
+  pwa:
+    build:
+      context: ./
+      target: pwa_dev
+    volumes:
+      - ./:/usr/src/pwa:rw,cached 
+    ports:
+      - target: 3000
+        published: 3000
+        protocol: tcp
