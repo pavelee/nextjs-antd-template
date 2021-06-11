@@ -11,8 +11,12 @@ import {
 } from "antd";
 
 const LoginPage = (props) => {
+  const { loginHandler } = props;
+  const [error, setError] = useState(false);
 
   const onFinish = (values) => {
+    let result = loginHandler(values.username, values.password);
+    setError(!result);
   };
 
   return (
@@ -20,11 +24,11 @@ const LoginPage = (props) => {
       <Row justify={"center"} style={styles.loginbox}>
         <Col>
           <Card>
-            {false && (
+            {error && (
               <Row style={styles.errorBox}>
                 <Col span={24}>
                   <Alert
-                    message="Wrong Login"
+                    message="wrong creditenials"
                     type="error"
                     showIcon
                   />
