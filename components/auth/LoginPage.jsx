@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { useAxios } from "../components/hooks/useAxios";
 import {
   Row,
   Col,
@@ -64,7 +63,7 @@ const LoginPage = (props) => {
                   type="primary"
                   htmlType="submit"
                 >
-                  Login in
+                  Sign In
                 </Button>
               </Form.Item>
             </Form>
