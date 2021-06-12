@@ -10,7 +10,7 @@ import {
 const { Header, Content, Footer, Sider } = Layout;
 
 const SideMenu = (props) => {
-    const { currentMenuItem } = props;
+    const { currentMenuItem, logoutHandler } = props;
 
     const MenuOptions = [
         {
@@ -34,13 +34,21 @@ const SideMenu = (props) => {
                     </Link>
                 </Menu.Item>
             ))}
+            <Menu.Item
+                key={"logout"}
+                onClick={() => {
+                    logoutHandler();
+                }}
+            >
+                Logout
+            </Menu.Item>
         </Menu>
     );
 };
 
 const PanelLayout = (props) => {
     const [currentMenuItem, setCurrentMenuItem] = useState("dashboard");
-    const { children } = props;
+    const { children, logoutHandler } = props;
     return (
         <>
             <Layout>
@@ -55,7 +63,10 @@ const PanelLayout = (props) => {
                     }}
                 >
                     <div className="logo" />
-                    <SideMenu currentMenuItem={currentMenuItem} />
+                    <SideMenu
+                        logoutHandler={logoutHandler}
+                        currentMenuItem={currentMenuItem}
+                    />
                 </Sider>
                 <Layout>
                     <Content style={{ margin: "24px 16px 0" }}>
