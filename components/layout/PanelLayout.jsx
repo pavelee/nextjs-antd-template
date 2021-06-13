@@ -5,29 +5,17 @@ import {
     UploadOutlined,
     UserOutlined,
     VideoCameraOutlined,
+    LogoutOutlined,
 } from "@ant-design/icons";
 
 const { Header, Content, Footer, Sider } = Layout;
 
 const SideMenu = (props) => {
-    const { currentMenuItem, logoutHandler } = props;
-
-    const MenuOptions = [
-        {
-            key: "dashboard",
-            title: "dashboard",
-            href: "/",
-        },
-        {
-            key: "dispatcher",
-            title: "???",
-            href: "/",
-        },
-    ];
+    const { currentMenuItem, menuItems, logoutHandler } = props;
 
     return (
         <Menu theme="dark" mode="inline" selectedKeys={[currentMenuItem]}>
-            {MenuOptions.map((menuItem) => (
+            {menuItems.map((menuItem) => (
                 <Menu.Item key={menuItem.key} icon={<UserOutlined />}>
                     <Link href={menuItem.href}>
                         <a>{menuItem.title}</a>
@@ -36,6 +24,7 @@ const SideMenu = (props) => {
             ))}
             <Menu.Item
                 key={"logout"}
+                icon={<LogoutOutlined />}
                 onClick={() => {
                     logoutHandler();
                 }}
@@ -55,17 +44,25 @@ const PanelLayout = (props) => {
                 <Sider
                     breakpoint="lg"
                     collapsedWidth="0"
-                    onBreakpoint={(broken) => {
-                        console.log(broken);
-                    }}
-                    onCollapse={(collapsed, type) => {
-                        console.log(collapsed, type);
-                    }}
+                    onBreakpoint={(broken) => {}}
+                    onCollapse={(collapsed, type) => {}}
                 >
                     <div className="logo" />
                     <SideMenu
                         logoutHandler={logoutHandler}
                         currentMenuItem={currentMenuItem}
+                        menuItems={[
+                            {
+                                key: "dashboard",
+                                title: "dashboard",
+                                href: "/",
+                            },
+                            {
+                                key: "dispatcher",
+                                title: "???",
+                                href: "/",
+                            },
+                        ]}
                     />
                 </Sider>
                 <Layout>
