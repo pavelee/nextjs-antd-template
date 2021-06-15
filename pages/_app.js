@@ -21,7 +21,21 @@ function App({ Component, pageProps }) {
     switch (Component.name) {
         default:
             return (
-                <Dashboard logoutHandler={logoutHandler}>
+                <Dashboard
+                    logoutHandler={logoutHandler}
+                    menuItems={[
+                        {
+                            key: "dashboard",
+                            title: "dashboard",
+                            href: "/",
+                        },
+                        {
+                            key: "dispatcher",
+                            title: "???",
+                            href: "/",
+                        },
+                    ]}
+                >
                     <Component {...pageProps} />
                 </Dashboard>
             );

@@ -37,7 +37,7 @@ const SideMenu = (props) => {
 
 const Dashboard = (props) => {
     const [currentMenuItem, setCurrentMenuItem] = useState("dashboard");
-    const { children, logoutHandler } = props;
+    const { children, logoutHandler, menuItems } = props;
     return (
         <>
             <Layout>
@@ -51,18 +51,7 @@ const Dashboard = (props) => {
                     <SideMenu
                         logoutHandler={logoutHandler}
                         currentMenuItem={currentMenuItem}
-                        menuItems={[
-                            {
-                                key: "dashboard",
-                                title: "dashboard",
-                                href: "/",
-                            },
-                            {
-                                key: "dispatcher",
-                                title: "???",
-                                href: "/",
-                            },
-                        ]}
+                        menuItems={menuItems}
                     />
                 </Sider>
                 <Layout>
