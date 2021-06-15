@@ -22,6 +22,7 @@ function App({ Component, pageProps }) {
         default:
             return (
                 <Dashboard
+                    user={user}
                     logoutHandler={logoutHandler}
                     menuItems={[
                         {
