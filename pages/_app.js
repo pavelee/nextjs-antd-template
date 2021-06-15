@@ -1,12 +1,12 @@
 import "antd/dist/antd.css";
 import "./app.css";
 
-import { useAuth } from "../components/auth/useAuth";
+import { useSimpleAuth } from "../components/auth/useSimpleAuth";
 import Dashboard from "../components/layout/dashboard";
 import Login from "../components/auth/login";
 
 function App({ Component, pageProps }) {
-    const { user, loginHandler, logoutHandler } = useAuth({
+    const { user, loginHandler, logoutHandler } = useSimpleAuth({
         username: "test",
         password: "test",
         correctToken: "VALID_TOKEN",

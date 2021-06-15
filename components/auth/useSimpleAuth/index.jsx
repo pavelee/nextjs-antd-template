@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export const useAuth = (params) => {
+export const useSimpleAuth = (params) => {
     const [token, setToken] = useState(null);
     const [user, setUser] = useState(undefined);
 
