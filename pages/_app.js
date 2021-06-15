@@ -9,7 +9,6 @@ function App({ Component, pageProps }) {
     const { user, loginHandler, logoutHandler } = useSimpleAuth({
         username: "test",
         password: "test",
-        correctToken: "VALID_TOKEN",
     });
 
     const authEnabled = true;

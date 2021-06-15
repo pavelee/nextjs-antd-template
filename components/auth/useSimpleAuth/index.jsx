@@ -4,7 +4,8 @@ export const useSimpleAuth = (params) => {
     const [token, setToken] = useState(null);
     const [user, setUser] = useState(undefined);
 
-    const { username, password, correctToken } = params;
+    const { username, password } = params;
+    const correctToken = username + password;
 
     useEffect(() => {
         let storedToken = getStoredToken();
