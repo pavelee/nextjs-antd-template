@@ -35,7 +35,7 @@ const SideMenu = (props) => {
     );
 };
 
-const PanelLayout = (props) => {
+const Dashboard = (props) => {
     const [currentMenuItem, setCurrentMenuItem] = useState("dashboard");
     const { children, logoutHandler } = props;
     return (
@@ -87,4 +87,4 @@ const PanelLayout = (props) => {
     );
 };
 
-export default PanelLayout;
+export default Dashboard;

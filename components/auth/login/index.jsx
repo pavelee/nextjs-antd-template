@@ -9,7 +9,7 @@ import {
   Alert,
 } from "antd";
 
-const LoginPage = (props) => {
+const Login = (props) => {
   const { loginHandler } = props;
   const [error, setError] = useState(false);
 
@@ -86,4 +86,4 @@ const styles = {
   },
 };
 
-export default LoginPage;
+export default Login;
