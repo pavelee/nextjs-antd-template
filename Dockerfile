@@ -10,7 +10,6 @@ WORKDIR /usr/src/pwa
 ENV NEXT_TELEMETRY_DISABLED 1
 
 COPY package.json yarn.lock ./
-RUN yarn
 
 COPY . ./
 
@@ -22,6 +21,8 @@ RUN chown -R nextjs:nodejs .
 VOLUME /usr/src/pwa/node_modules
 
 USER nextjs
+
+RUN yarn
 
 FROM pwa_common AS pwa_dev
 
