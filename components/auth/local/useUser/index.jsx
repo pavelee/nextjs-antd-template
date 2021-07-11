@@ -8,7 +8,7 @@ export const useUser = (props) => {
             name: "test",
         },
     } = props;
-    const [user, setUser] = useState(null);
+    const [user, setUser] = useState(undefined);
 
     useEffect(() => {
         if (token && token === correctToken) {

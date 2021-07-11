@@ -2,9 +2,8 @@ import { useState, useEffect } from "react";
 import { useAxios } from "../../../request/useAxios";
 
 export const useUser = (props) => {
-    const { token, fetchUserUrl } =
-        props;
-    const [user, setUser] = useState(null);
+    const { token, fetchUserUrl } = props;
+    const [user, setUser] = useState(undefined);
 
     const { request, response, error, loading } = useAxios();
 
@@ -12,27 +11,28 @@ export const useUser = (props) => {
         if (token) {
             request({
                 url: fetchUserUrl,
-                method: 'GET',
+                method: "GET",
                 headers: {
-                    'Authorization': 'Bearer ' + token
+                    Authorization: "Bearer " + token,
                 },
             });
-        } else {
+        }
+        if (token === null) {
             setUser(null);
         }
     }, [token]);
 
     useEffect(() => {
-        if (response) {
+        if (response && response !== null) {
             setUser(response);
         }
-    }, [response])
+    }, [response]);
 
     useEffect(() => {
         console.log(error);
-    }, [error])
+    }, [error]);
 
     return {
-        user
-    }
+        user,
+    };
 };

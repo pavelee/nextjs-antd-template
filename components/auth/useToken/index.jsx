@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 
 export const useToken = (props = {}) => {
     const { storageType = "localStorage", defaultStorageKey = "token" } = props;
-    const [token, setToken] = useState(null);
+    const [token, setToken] = useState(undefined);
 
     useEffect(() => {
         switch (storageType) {
@@ -10,6 +10,8 @@ export const useToken = (props = {}) => {
                 let t = getTokenFromLocalStorage(defaultStorageKey);
                 if (t) {
                     setToken(t);
+                } else {
+                    setToken(null);
                 }
                 break;
             default:
@@ -28,12 +30,20 @@ export const useToken = (props = {}) => {
     }, [token]);
 
     const getTokenFromLocalStorage = (key = "token") => {
-        return window.localStorage.getItem(key);
+        let token = window.localStorage.getItem(key);
+        if (validateToken(token) === false) {
+            return null;
+        }
+        return token;
     };
 
     const setTokenInLocalStorage = (token, key = "token") => {
         window.localStorage.setItem(key, token);
     };
+
+    const validateToken = (token) => {
+        return !(token === 'null' || token === 'undefined' || (token && token.length <= 0))
+    }
 
     return {
         token,
