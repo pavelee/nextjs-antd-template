@@ -9,10 +9,12 @@ import { useAuth } from "../components/auth/api/useAuth";
 import { useUser } from "../components/auth/api/useUser";
 
 function App({ Component, pageProps }) {
-    const correctToken = 'ASvdghalwWFSXawg';
+    const correctUsername = 'test';
+    const correctPassword = 'test';
+    const correctToken = correctUsername;
     const { token, error, loginHandler, logoutHandler } = useLocalAuth({
-        username: "test",
-        password: "test",
+        username: correctUsername,
+        password: correctPassword,
         correctToken
     });
     const { user } = useLocalUser({
