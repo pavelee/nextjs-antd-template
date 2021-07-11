@@ -10,12 +10,10 @@ import {
 } from "antd";
 
 const Login = (props) => {
-  const { loginHandler } = props;
-  const [error, setError] = useState(false);
+  const { loginHandler, error } = props;
 
   const onFinish = (values) => {
-    let result = loginHandler(values.username, values.password);
-    setError(!result);
+    loginHandler(values.username, values.password);
   };
 
   return (
