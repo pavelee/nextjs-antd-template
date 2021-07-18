@@ -1,4 +1,4 @@
-ARG NODE_VERSION=14
+ARG NODE_VERSION=16
 
 FROM node:${NODE_VERSION}-alpine AS pwa_common
 
@@ -13,12 +13,12 @@ COPY package.json yarn.lock ./
 
 COPY . ./
 
+VOLUME /usr/src/pwa/node_modules
+
 RUN addgroup -g 1001 -S nodejs
 RUN adduser -S nextjs -u 1001
 
 RUN chown -R nextjs:nodejs .
-
-VOLUME /usr/src/pwa/node_modules
 
 USER nextjs
 
