@@ -10,26 +10,27 @@ import { useAuth } from "../components/auth/api/useAuth";
 import { useUser } from "../components/auth/api/useUser";
 
 function App({ Component, pageProps }) {
-    // const correctUsername = 'test';
-    // const correctPassword = 'test';
-    // const correctToken = correctUsername;
-    // const { token, error, loginHandler, logoutHandler } = useLocalAuth({
-    //     username: correctUsername,
-    //     password: correctPassword,
-    //     correctToken
-    // });
-    // const { user } = useLocalUser({
-    //     token,
-    //     correctToken
-    // });
-
-    const { token, error, loginHandler, logoutHandler } = useAuth({
-        authUrl: "http://localhost:8444/login",
+    const correctUsername = 'test';
+    const correctPassword = 'test';
+    const correctToken = correctUsername;
+    const { token, error, loginHandler, logoutHandler } = useLocalAuth({
+        username: correctUsername,
+        password: correctPassword,
+        correctToken
     });
-    const { user } = useUser({
+    const { user } = useLocalUser({
         token,
-        fetchUserUrl: "http://localhost:8444/current-user",
+        correctToken
     });
+
+    // uncomment if you want to enable API auth
+    // const { token, error, loginHandler, logoutHandler } = useAuth({
+    //     authUrl: "http://localhost:8444/login",
+    // });
+    // const { user } = useUser({
+    //     token,
+    //     fetchUserUrl: "http://localhost:8444/current-user",
+    // });
 
     const authEnabled = true;
     if (authEnabled) {
