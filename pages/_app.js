@@ -1,26 +1,27 @@
 import "antd/dist/antd.css";
 import "./app.css";
 
-import { Spin } from 'antd'
+import { Spin } from "antd";
 import { useAuth as useLocalAuth } from "../components/auth/local/useAuth";
-import { useUser as useLocalUser } from '../components/auth/local/useUser';
+import { useUser as useLocalUser } from "../components/auth/local/useUser";
 import Dashboard from "../components/layout/dashboard";
 import Login from "../components/auth/login";
+import { PageLoader } from "../components/loader/pageLoader";
 import { useAuth } from "../components/auth/api/useAuth";
 import { useUser } from "../components/auth/api/useUser";
 
 function App({ Component, pageProps }) {
-    const correctUsername = 'test';
-    const correctPassword = 'test';
+    const correctUsername = "test";
+    const correctPassword = "test";
     const correctToken = correctUsername;
     const { token, error, loginHandler, logoutHandler } = useLocalAuth({
         username: correctUsername,
         password: correctPassword,
-        correctToken
+        correctToken,
     });
     const { user } = useLocalUser({
         token,
-        correctToken
+        correctToken,
     });
 
     // uncomment if you want to enable API auth
@@ -35,10 +36,16 @@ function App({ Component, pageProps }) {
     const authEnabled = true;
     if (authEnabled) {
         if (user === undefined) {
-            return <Spin />
+            return <PageLoader />;
         }
         if (user === null) {
-            return <Login loginHandler={loginHandler} error={error} {...pageProps} />;
+            return (
+                <Login
+                    loginHandler={loginHandler}
+                    error={error}
+                    {...pageProps}
+                />
+            );
         }
     }
 
