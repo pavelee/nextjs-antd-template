@@ -68,7 +68,7 @@ const Dashboard = (props) => {
                         </div>
                     </Content>
                     <Footer style={{ textAlign: "center" }}>
-                        Elmo2.0 2021 Wiedza i Praktyka
+                        Template App
                     </Footer>
                 </Layout>
             </Layout>
