@@ -29,7 +29,10 @@ export const useUser = (props) => {
     }, [response]);
 
     useEffect(() => {
-        console.log(error);
+        if (error) {
+            console.log(error);
+            setUser(null);
+        }
     }, [error]);
 
     return {
