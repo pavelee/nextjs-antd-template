@@ -34,6 +34,7 @@ export const useAuth = (params) => {
     return {
         token,
         error,
+        loading,
         loginHandler,
         logoutHandler,
     };
