@@ -15,13 +15,45 @@ const SideMenu = (props) => {
 
     return (
         <Menu theme="dark" mode="inline" selectedKeys={[currentMenuItem]}>
-            {menuItems.map((menuItem) => (
-                <Menu.Item key={menuItem.key} icon={<UserOutlined />}>
-                    <Link href={menuItem.href}>
-                        <a>{menuItem.title}</a>
-                    </Link>
-                </Menu.Item>
-            ))}
+            {menuItems.map((menuItem) => {
+                if (menuItem.childs) {
+                    return (
+                        <Menu.SubMenu
+                            key={menuItem.key}
+                            title={menuItem.title}
+                            icon={menuItem.icon ? menuItemChild.icon : null}
+                        >
+                            {menuItem.childs.length > 0 &&
+                                menuItem.childs.map((menuItemChild) => {
+                                    return (
+                                        <Menu.Item
+                                            key={menuItemChild.key}
+                                            icon={
+                                                menuItemChild.icon
+                                                    ? menuItemChild.icon
+                                                    : null
+                                            }
+                                        >
+                                            <Link href={menuItemChild.href}>
+                                                <a>{menuItemChild.title}</a>
+                                            </Link>
+                                        </Menu.Item>
+                                    );
+                                })}
+                        </Menu.SubMenu>
+                    );
+                }
+                return (
+                    <Menu.Item
+                        key={menuItem.key}
+                        icon={menuItem.icon ? menuItemChild.icon : null}
+                    >
+                        <Link href={menuItem.href}>
+                            <a>{menuItem.title}</a>
+                        </Link>
+                    </Menu.Item>
+                );
+            })}
             <Menu.Item
                 key={"logout"}
                 icon={<LogoutOutlined />}

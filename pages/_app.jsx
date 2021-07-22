@@ -57,6 +57,17 @@ function App({ Component, pageProps }) {
                     logoutHandler={logoutHandler}
                     menuItems={[
                         {
+                            key: "test",
+                            title: "test",
+                            childs: [
+                                {
+                                    key: "dd",
+                                    title: "dd",
+                                    href: "/",
+                                },
+                            ],
+                        },
+                        {
                             key: "dashboard",
                             title: "dashboard",
                             href: "/",
