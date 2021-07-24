@@ -1,6 +1,45 @@
 import { useState } from "react";
 import { Table as AntTable } from "antd";
+import { Form, Input, Card, Button, Space } from "antd";
 import { useFetcher } from "../../request/useFetcher";
+
+export const TextSearchFilter = (name) => ({
+    filterDropdown: ({
+        setSelectedKeys,
+        selectedKeys,
+        confirm,
+        clearFilters,
+    }) => (
+        <Card>
+            <Space direction={"vertical"}>
+                <Form>
+                    <Input
+                        placeholder={`Search ${name}`}
+                        value={selectedKeys[0]}
+                        onChange={(e) =>
+                            setSelectedKeys(
+                                e.target.value ? [e.target.value] : []
+                            )
+                        }
+                        onPressEnter={() => {
+                            confirm();
+                        }}
+                    />
+                </Form>
+                <Space>
+                    <Button onClick={() => confirm()}>Search</Button>
+                    <Button
+                        onClick={() => {
+                            clearFilters();
+                        }}
+                    >
+                        cancel
+                    </Button>
+                </Space>
+            </Space>
+        </Card>
+    ),
+});
 
 export const Table = (props) => {
     const [page, setPage] = useState(1);
@@ -28,14 +67,16 @@ export const Table = (props) => {
             );
         }
         if (filters) {
-            for(let k in filters) {
+            for (let k in filters) {
                 let v = filters[k];
-                if (Array.isArray(v)) {
-                    v.forEach(vv => {
-                        queryParam.push(k + '[]=' + vv);
-                    })
-                } else {
-                    queryParam.push(k + '=' + v);
+                if (v) {
+                    if (Array.isArray(v)) {
+                        v.forEach((vv) => {
+                            queryParam.push(k + "[]=" + vv);
+                        });
+                    } else {
+                        queryParam.push(k + "=" + v);
+                    }
                 }
             }
         }
