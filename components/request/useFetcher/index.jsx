@@ -9,7 +9,7 @@ export const useFetcher = (props) => {
         axios
             .request({
                 url: url + (query ? "?" + query : ""),
-                headers: { Authorization: ( token ? `Bearer ${token}` : 'none') },
+                headers: token ? { Authorization:`Bearer ${token}` } : {},
             })
             .then((res) => res.data);
     const { data, error } = useSWR([url, token, query], fetcher);
