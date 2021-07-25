@@ -3,7 +3,7 @@ import { Table as AntTable } from "antd";
 import { Form, Input, Card, Button, Space } from "antd";
 import { useFetcher } from "../../request/useFetcher";
 
-export const TextSearchFilter = (name) => ({
+export const TextSearchFilter = (name, searchText = 'Search', cancelText = 'Cancel') => ({
     filterDropdown: ({
         setSelectedKeys,
         selectedKeys,
@@ -14,7 +14,7 @@ export const TextSearchFilter = (name) => ({
             <Space direction={"vertical"}>
                 <Form>
                     <Input
-                        placeholder={`Search ${name}`}
+                        placeholder={`${name}`}
                         value={selectedKeys[0]}
                         onChange={(e) =>
                             setSelectedKeys(
@@ -27,13 +27,13 @@ export const TextSearchFilter = (name) => ({
                     />
                 </Form>
                 <Space>
-                    <Button onClick={() => confirm()}>Search</Button>
+                    <Button onClick={() => confirm()}>{searchText}</Button>
                     <Button
                         onClick={() => {
                             clearFilters();
                         }}
                     >
-                        cancel
+                        {cancelText}
                     </Button>
                 </Space>
             </Space>
@@ -42,12 +42,24 @@ export const TextSearchFilter = (name) => ({
 });
 
 export const Table = (props) => {
-    const [page, setPage] = useState(1);
-    const [perPage, setPerPage] = useState(30);
-    const [query, setQuery] = useState(null);
+    const {
+        dataSourceUrl,
+        token = null,
+        defaultPage = 1,
+        defaultPerPage = 20,
+        defaultQuery = null,
+        pageParamName = "page",
+        perPageParamName = "per_page",
+        orderParamName = "order",
+        dataIndex = "",
+        dataCountIndex = "",
+    } = props;
+
+    const [page, setPage] = useState(defaultPage);
+    const [perPage, setPerPage] = useState(defaultPerPage);
+    const [query, setQuery] = useState(defaultQuery);
 
     const handleTableChange = (pagination, filters, sorter) => {
-        console.log(pagination, filters, sorter);
         let queryParam = [];
         if (pagination.current) {
             queryParam.push(pageParamName + "=" + pagination.current);
@@ -83,16 +95,6 @@ export const Table = (props) => {
         let query = queryParam.join("&");
         setQuery(query);
     };
-
-    const {
-        dataSourceUrl,
-        token = null,
-        pageParamName = "page",
-        perPageParamName = "per_page",
-        orderParamName = "order",
-        dataIndex = "",
-        dataCountIndex = "",
-    } = props;
 
     const { data, error, loading } = useFetcher({
         url: dataSourceUrl,
