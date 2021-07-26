@@ -27,7 +27,7 @@ const Dashboard = (props) => {
                         menuItems={menuItems}
                     />
                 </Sider>
-                <Layout>
+                <Layout style={{minHeight: '100vh'}}>
                     <Content>
                         <div
                             style={{ padding: 24 }}

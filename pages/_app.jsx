@@ -1,5 +1,4 @@
 import "antd/dist/antd.css";
-import "./app.css";
 
 import { Spin } from "antd";
 import { useAuth as useLocalAuth } from "../components/auth/local/useAuth";
